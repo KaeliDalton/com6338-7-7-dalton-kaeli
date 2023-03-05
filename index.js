@@ -67,3 +67,43 @@ var questionsArr = [
   var finalScoreEl = document.createElement('p')
   //start button
   var answerBtn = document.createElement('button')
+   
+  function setUp(){
+    //fresh score for attempt
+    numCorrect = 0
+    i = 0
+    quiz.innerHTML = ''
+    //show previous score
+    previousScore = localStorage.getItem('previous-score')
+    if(previousScore){
+      finalScoreEl.textContent = "Previous Score:" + previousScore + '%'
+      quiz.appendChild(finalScoreEl)
+    }
+    //start button
+    answerBtn.id = 'start-quiz'
+    answerBtn.textContent = 'Start Quiz!'
+    quiz.appendChild(answerBtn)
+    }
+    
+      
+       //countdown
+      function countdown(){
+      timerEl = setInterval(function(){
+        seconds--
+        if(seconds > 0){
+            timer.textContent = seconds
+        }else{
+          //advance when time runs out
+            clearInterval(timerEl)
+            i++
+            //determine if should advance or end quiz
+            if(i< questionsArr.length){
+              runQuiz()
+            }else{
+              endQuiz()
+            }
+        }
+      }, 1000)
+      }
+      
+     
