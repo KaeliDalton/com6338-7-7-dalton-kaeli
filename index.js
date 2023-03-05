@@ -151,3 +151,11 @@ var questionsArr = [
           }
         }
     }
+    function endQuiz(){
+        quiz.innerHTML = ""
+        var previousScore = Math.floor((numCorrect/questionsArr.length)*100)
+        localStorage.setItem('previous-score', previousScore)
+        setUp()
+      }
+      
+      setUp()  
